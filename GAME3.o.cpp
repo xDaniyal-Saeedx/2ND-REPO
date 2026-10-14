@@ -78,20 +78,25 @@ void gotoxy(int x, int y)
 
 void moveH(int x, int y)
 {
-    while(x < 42)
+    while(x < 42 && y > 0)
     {
         gotoxy(x,y);
         cout << "P";
-        Sleep(100);
+        Sleep(1);
         gotoxy(x,y);
         cout << " ";
         x++;
+        if (x == 42 && y > 0)
+        {
+            x = 1;
+            y--;
+        }
         
     }
 }
 void moveV(int x, int y)
 {
-    while(y > 0) 
+    while(y > 0 && x <  42) 
     {
         gotoxy(x,y);
         cout << "P";
@@ -99,7 +104,11 @@ void moveV(int x, int y)
         gotoxy(x,y);
         cout << " ";
         y--;
-        
+        if (y == 0 && x < 42)
+        {
+            y = 20;
+            x++;
+        }
     }
  
 }
@@ -109,7 +118,7 @@ void moveD(int x, int y)
     {
         gotoxy(x,y);
         cout << "P";
-        Sleep(100);
+        Sleep(1);
         gotoxy(x,y);
         cout << " ";
         x = x + 2;

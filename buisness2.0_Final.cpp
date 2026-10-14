@@ -1,0 +1,154 @@
+#include<iostream>
+#include<windows.h>
+using namespace std;
+
+
+void result(float &itemprice1,float &itemprice2,float &itemprice3,float &total);
+void calculate(float &itemprice1,float &itemquantity1,float &itemprice2,float &itemquantity2,float &itemprice3,float &itemquantity3,float &total);
+void add_data(string& itemname,float& itemprice,float& itemquantity);
+void admin(string username,string password);
+
+
+main()
+{
+    string itemName1,itemName2,itemName3, password, username, choice;
+    float itemPrice1 = 0;
+    float itemQuantity1 = 0;
+    float itemPrice2 = 0;
+    float itemQuantity2 = 0;
+    float itemPrice3 = 0;
+    float itemQuantity3 = 0;
+    float total = 0;
+    
+   admin(username,password);
+  cout << " __________________________________ "<<endl;
+  cout << "      SALES MANAGEMENT SYSTEM       "<<endl;
+  cout << " __________________________________ "<<endl;
+
+   while (true)
+   {
+   
+  cout<<"1. enter data for item 1"<<endl;
+  cout<<"2. enter data for item 2"<<endl;
+  cout<<"3. enter data for item 3"<<endl;
+  cout<<"4. calculate data"<<endl;
+  cout<<"5. display result"<<endl;
+  cout<<"6. exit"<<endl;
+  cin >> choice;
+  if(choice == "1")
+  {
+   add_data(itemName1,itemPrice1,itemQuantity1);
+   }
+   else if(choice == "2")
+   {
+    add_data(itemName2,itemPrice2,itemQuantity2);
+   }
+   else if(choice == "3")
+   {
+    add_data(itemName3,itemPrice3,itemQuantity3);
+   }
+   else if(choice == "4")
+   {
+    calculate(itemPrice1,itemQuantity1,itemPrice2,itemQuantity2,itemPrice3,itemQuantity3,total);
+   }
+   else if(choice == "5")
+   {
+   result(itemPrice1,itemPrice2,itemPrice3,total);
+   itemPrice1 = 0;
+    itemQuantity1 = 0;
+    itemPrice2 = 0;
+    itemQuantity2 = 0;
+    itemPrice3 = 0;
+    itemQuantity3 = 0;
+    total = 0;
+   }
+   else if(choice == "6")
+   {
+    cout << "exiting program"<<endl;
+    Sleep(2000);
+    break;
+   }
+   else
+   {
+     cout << "choose from above options!!!"<<endl;
+   }
+}
+}
+
+void add_data(string &itemname,float &itemprice,float &itemquantity)
+{
+   
+    cout << "enter the item name: ";
+    cin>> itemname;
+    if(itemname=="cake" or itemname=="sundae" or itemname=="coffee" or itemname=="donut" or itemname=="brownie")
+    {
+       cout << "enter the item price: ";
+    cin>> itemprice;
+    cout << "enter the quantity: ";
+    cin >> itemquantity;
+       
+    }
+    else{ 
+      cout << "we dont sell it!"<<endl ;
+    }
+}
+void calculate(float &itemprice1,float &itemquantity1,float &itemprice2,float &itemquantity2,float &itemprice3,float &itemquantity3,float &total)
+{
+         
+    itemprice1 = itemprice1 * itemquantity1;
+    itemprice2 = itemprice2 * itemquantity2;
+    itemprice3 = itemprice3 * itemquantity3;
+    total = itemprice1 + itemprice2 + itemprice3;
+   if(total>6000)
+      {
+        total = total - (total * 0.15);
+      }  
+      
+        
+        
+    
+}
+
+void result(float &itemprice1,float &itemprice2,float &itemprice3,float &total)
+{
+   if(total==0)
+      {
+        cout << "enter data first."<<endl;
+      }
+      else
+      {
+      cout << "item 1 price: "<<itemprice1<<endl;
+      cout << "item 2 price: "<<itemprice2<<endl;
+      cout << "item 3 price: "<<itemprice3<<endl;
+
+      cout << "your grand total is: "<<total<<endl;
+      if(total>6000)
+      {
+        cout << "you got 15 percent discount"<<endl;
+      }
+      }      
+    
+    
+}
+void admin(string username,string password)
+{
+  
+system("cls");
+ cout<< "Username:";
+ cin>>username;
+ cout<<"Password:";
+ cin >> password ;
+ if(username=="admin23" && password=="2nifjakl")
+ { 
+  system("cls");
+  cout<<"Welcome Admin!!"<<endl;
+  Sleep(2000);
+  system("cls");
+ }
+ else
+ {
+   cout << "wrong username or password"<<endl<<"WAIT FOR 5 SECONDS"<<endl;
+   Sleep(5000);
+   admin(username,password);
+}
+}
