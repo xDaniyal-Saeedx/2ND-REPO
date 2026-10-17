@@ -1,6 +1,7 @@
 #include<iostream>
 #include<windows.h>
 #include<iomanip>
+#include<conio.h>
 using namespace std;
 
 
@@ -8,6 +9,11 @@ void result(float &itemPrice1,float &itemQuantity1,float &itemPrice2,float &item
 void calculate(float &itemprice1,float &itemquantity1,float &itemprice2,float &itemquantity2,float &itemprice3,float &itemquantity3,float &total,float &TitemPrice1,float &TitemPrice2,float &TitemPrice3);
 void add_data(string& itemname,float& itemprice,float& itemquantity);
 void admin(string username,string password);
+void Header() {
+    cout << " __________________________________ "<<endl;
+    cout << "      SALES MANAGEMENT SYSTEM       "<<endl;
+    cout << " __________________________________ "<<endl;
+}
 
 
 main()
@@ -25,9 +31,7 @@ main()
        float TitemPrice2=0;
     
    admin(username,password);
-  cout << " __________________________________ "<<endl;
-  cout << "      SALES MANAGEMENT SYSTEM       "<<endl;
-  cout << " __________________________________ "<<endl;
+    Header();
 
    while (true)
    {
@@ -37,7 +41,8 @@ main()
   cout<<"3. enter data for item 3"<<endl;
   cout<<"4. calculate data"<<endl;
   cout<<"5. display result"<<endl;
-  cout<<"6. exit"<<endl;
+  cout<<"6. EXIT"<<endl;
+  cout <<"your choice:";
   cin >> choice;
   if(choice == "1")
   {
@@ -70,12 +75,16 @@ main()
     TitemPrice2=0;
 
    }
-   else if(choice == "6")
-   {
-    cout << "exiting program"<<endl;
+  else if (choice == "6")
+{   cout <<"press q to exit\n";
+   char ch = _getch();
+    if(ch=='q'){ 
+    cout << "exiting program\n" << endl;
     Sleep(2000);
     break;
-   }
+    }
+}
+  
    else
    {
      cout << "choose from above options!!!"<<endl;
@@ -94,6 +103,8 @@ void add_data(string &itemname,float &itemprice,float &itemquantity)
     cin>> itemprice;
     cout << "enter the quantity: ";
     cin >> itemquantity;
+    cout <<"press any to continue\n";
+    _getch();
        
     }
     else{ 
@@ -112,6 +123,9 @@ void calculate(float &itemprice1,float &itemquantity1,float &itemprice2,float &i
 TitemPrice3 = itemprice3 * itemquantity3;
     total = TitemPrice1 + TitemPrice2 + TitemPrice3;
   
+  
+   cout <<"press any to continue\n";
+    _getch();
       
         
         
@@ -138,7 +152,9 @@ void result(float &itemPrice1,float &itemQuantity1,float &itemPrice2,float &item
 else
 {
     cout << "your grand total is: " << total << endl;
-}     
+}
+cout <<"press any to continue\n";
+    _getch();     
     
     
 }
