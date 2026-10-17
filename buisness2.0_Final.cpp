@@ -1,10 +1,11 @@
 #include<iostream>
 #include<windows.h>
+#include<iomanip>
 using namespace std;
 
 
-void result(float &itemprice1,float &itemprice2,float &itemprice3,float &total);
-void calculate(float &itemprice1,float &itemquantity1,float &itemprice2,float &itemquantity2,float &itemprice3,float &itemquantity3,float &total);
+void result(float &itemPrice1,float &itemQuantity1,float &itemPrice2,float &itemQuantity2,float &itemPrice3,float&itemQuantity3,float &total,string &itemName1,string &itemName2,string &itemName3,float &TitemPrice1,float &TitemPrice2,float &TitemPrice3);
+void calculate(float &itemprice1,float &itemquantity1,float &itemprice2,float &itemquantity2,float &itemprice3,float &itemquantity3,float &total,float &TitemPrice1,float &TitemPrice2,float &TitemPrice3);
 void add_data(string& itemname,float& itemprice,float& itemquantity);
 void admin(string username,string password);
 
@@ -19,6 +20,9 @@ main()
     float itemPrice3 = 0;
     float itemQuantity3 = 0;
     float total = 0;
+     float TitemPrice1=0;
+      float TitemPrice3=0;
+       float TitemPrice2=0;
     
    admin(username,password);
   cout << " __________________________________ "<<endl;
@@ -49,11 +53,11 @@ main()
    }
    else if(choice == "4")
    {
-    calculate(itemPrice1,itemQuantity1,itemPrice2,itemQuantity2,itemPrice3,itemQuantity3,total);
+    calculate(itemPrice1,itemQuantity1,itemPrice2,itemQuantity2,itemPrice3,itemQuantity3,total,TitemPrice1,TitemPrice2,TitemPrice3);
    }
    else if(choice == "5")
    {
-   result(itemPrice1,itemPrice2,itemPrice3,total);
+   result(itemPrice1,itemQuantity1,itemPrice2,itemQuantity2,itemPrice3,itemQuantity3,total,itemName1,itemName2,itemName3,TitemPrice1,TitemPrice2,TitemPrice3);
    itemPrice1 = 0;
     itemQuantity1 = 0;
     itemPrice2 = 0;
@@ -61,6 +65,10 @@ main()
     itemPrice3 = 0;
     itemQuantity3 = 0;
     total = 0;
+    TitemPrice1=0;
+    TitemPrice3=0;
+    TitemPrice2=0;
+
    }
    else if(choice == "6")
    {
@@ -90,26 +98,27 @@ void add_data(string &itemname,float &itemprice,float &itemquantity)
     }
     else{ 
       cout << "we dont sell it!"<<endl ;
+      itemname="";
+      itemprice=0;
+      itemquantity=0;
+    
     }
 }
-void calculate(float &itemprice1,float &itemquantity1,float &itemprice2,float &itemquantity2,float &itemprice3,float &itemquantity3,float &total)
+void calculate(float &itemprice1,float &itemquantity1,float &itemprice2,float &itemquantity2,float &itemprice3,float &itemquantity3,float &total,float &TitemPrice1,float &TitemPrice2,float &TitemPrice3)
 {
          
-    itemprice1 = itemprice1 * itemquantity1;
-    itemprice2 = itemprice2 * itemquantity2;
-    itemprice3 = itemprice3 * itemquantity3;
-    total = itemprice1 + itemprice2 + itemprice3;
-   if(total>6000)
-      {
-        total = total - (total * 0.15);
-      }  
+   TitemPrice1 = itemprice1 * itemquantity1;
+  TitemPrice2 = itemprice2 * itemquantity2;
+TitemPrice3 = itemprice3 * itemquantity3;
+    total = TitemPrice1 + TitemPrice2 + TitemPrice3;
+  
       
         
         
     
 }
 
-void result(float &itemprice1,float &itemprice2,float &itemprice3,float &total)
+void result(float &itemPrice1,float &itemQuantity1,float &itemPrice2,float &itemQuantity2,float &itemPrice3,float&itemQuantity3,float &total,string &itemName1,string &itemName2,string &itemName3,float &TitemPrice1,float &TitemPrice2,float &TitemPrice3)
 {
    if(total==0)
       {
@@ -117,19 +126,24 @@ void result(float &itemprice1,float &itemprice2,float &itemprice3,float &total)
       }
       else
       {
-      cout << "item 1 price: "<<itemprice1<<endl;
-      cout << "item 2 price: "<<itemprice2<<endl;
-      cout << "item 3 price: "<<itemprice3<<endl;
-
-      cout << "your grand total is: "<<total<<endl;
-      if(total>6000)
-      {
-        cout << "you got 15 percent discount"<<endl;
-      }
-      }      
+      cout << left << setw(12) << "name"    << setw(12) << "quantity"    <<setw(12)<<"unit"    <<setw(12)<<"Total item price" << endl;
+      cout << left << setw(12) << itemName1 << setw(12) << itemQuantity1 <<setw(12)<<itemPrice1<<setw(12)<<TitemPrice1 << endl;
+      cout << left << setw(12) << itemName2 << setw(12) << itemQuantity2 <<setw(12)<<itemPrice2<<setw(12)<< TitemPrice2 << endl;
+      cout << left << setw(12) << itemName3 << setw(12) << itemQuantity3 <<setw(12)<<itemPrice3<<setw(12)<< TitemPrice3 << endl;
+    if (total > 6000)
+{
+    cout << "your grand total : " << (total - (total*0.15)) << endl;
+    cout << "you got 15 percent discount" << endl;
+}
+else
+{
+    cout << "your grand total is: " << total << endl;
+}     
     
     
 }
+}
+
 void admin(string username,string password)
 {
   
